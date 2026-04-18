@@ -15,5 +15,6 @@ spec:
       containers:
       - name: vprofile
         image: vprofile-app:latest
+        imagePullPolicy: Never
         ports:
         - containerPort: 8080
