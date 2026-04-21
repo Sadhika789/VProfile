@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    tools {
+        maven 'M3'   // name you configured in Global Tool Configuration
+    }
     triggers{
         githubPush()
     }
