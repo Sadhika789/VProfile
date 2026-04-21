@@ -1,8 +1,8 @@
 name: Trigger build
-on: 
-  push:
-    branches:
-      - master
+# on: 
+#  push:
+#   branches:
+#    - master
 jobs:
   trigger:
     runs-on: ubuntu-latest
