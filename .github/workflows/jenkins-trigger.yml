@@ -8,13 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger build
-        run: |
-          curl -X POST "$JENKINS_URL/job/$JENKINS_JOB/build" \
-          --user "$JENKINS_USER:$JENKINS_TOKEN"
         env:
           JENKINS_URL: ${{ secrets.JENKINS_URL }}
-          JENKINS_JOB: ${{ secrets.JENKINS_JOB }}
           JENKINS_USER: ${{ secrets.JENKINS_USER }}
           JENKINS_TOKEN: ${{ secrets.JENKINS_TOKEN }}
-          
+        run: |
+         curl -X POST "$JENKINS_URL/job/<job-name>/build" \
+          --user "$JENKINS_USER:$JENKINS_TOKEN"
         
