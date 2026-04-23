@@ -23,9 +23,33 @@ pipeline {
             stage('build') {
                steps {
                   sh '''
-             eval $(minikube docker-env)
-            docker build -t localhost:5000/vprofile:${BUILD_NUMBER} -f ${WORKSPACE}/Dockerfile ${WORKSPACE}
-            docker push localhost:5000/vprofile:${BUILD_NUMBER}
+             kubectl run kaniko-build-${BUILD_NUMBER} \
+                  --rm -i --restart=Never \
+                  --image=gcr.io/kaniko-project/executor:latest \
+                  --overrides='{
+                    "apiVersion": "v1",
+                    "spec": {
+                      "containers": [{
+                        "name": "kaniko",
+                        "image": "gcr.io/kaniko-project/executor:latest",
+                        "args": [
+                          "--dockerfile=/workspace/Dockerfile",
+                          "--context=/workspace",
+                          "--destination=localhost:5000/vprofile:${BUILD_NUMBER}"
+                        ],
+                        "volumeMounts": [{
+                          "name": "workspace",
+                          "mountPath": "/workspace"
+                        }]
+                      }],
+                      "volumes": [{
+                        "name": "workspace",
+                        "hostPath": {
+                          "path": "${WORKSPACE}"
+                        }
+                      }]
+                    }
+                  }'
         '''
             }
         }
