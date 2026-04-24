@@ -19,6 +19,15 @@ pipeline {
                 sh 'mvn clean package -DskipTests'
             }
         }
+        stage('Setup kubectl') {
+  steps {
+    sh '''
+      curl -LO "https://dl.k8s.io/release/$(curl -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+      chmod +x kubectl
+      mv kubectl /usr/local/bin/
+    '''
+  }
+}
         
             stage('build') {
                steps {
