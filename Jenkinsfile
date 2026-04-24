@@ -35,7 +35,7 @@ pipeline {
                         "args": [
                           "--dockerfile=/workspace/Dockerfile",
                           "--context=/workspace",
-                          "--destination=localhost:5000/vprofile:${BUILD_NUMBER}"
+                          "--destination=registry.kube-system.svc.cluster.local:5000/vprofile:${BUILD_NUMBER}"
                         ],
                         "volumeMounts": [{
                           "name": "workspace",
