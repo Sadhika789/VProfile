@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: vprofile
-        image: registry.kube-system.svc.cluster.local:5000/vprofile:${BUILD_NUMBER}
-        imagePullPolicy: IfNotPresent
+        image: ylakshmisadhika/vprofile:${BUILD_NUMBER}
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
