@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vprofile-deployment
+  name: vprofile-deploy
 spec:
   replicas: 1
   selector:
