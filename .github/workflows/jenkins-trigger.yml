@@ -29,4 +29,4 @@ jobs:
           git config user.name "CI Bot"
           git add src/k8s/deployment.yaml
           git commit -m "Update image tag to ${{ github.run_number }}"
-          git push origin main
+          git push origin master
