@@ -13,7 +13,7 @@ spec:
         app: vprofile
     spec:
       containers:
-      - name: Vprofile
+      - name: vprofile
         image: ylakshmisadhika/vprofile:${BUILD_NUMBER}
         imagePullPolicy: Always
         ports:
